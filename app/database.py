@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from psycopg.rows import dict_row
 from .config import settings
 
-SQLALCHEMY_DATBASE_URL = f"postgresql://{settings.DATABASE_USERNAME}:{settings.DATABASE_PASSWORD}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}"
+SQLALCHEMY_DATBASE_URL = f"postgres://{settings.DATABASE_USERNAME}:{settings.DATABASE_PASSWORD}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}"
 
 engine = create_engine(SQLALCHEMY_DATBASE_URL)
 
