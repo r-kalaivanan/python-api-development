@@ -5,10 +5,17 @@ from sqlalchemy.orm import sessionmaker
 # import psycopg
 from psycopg.rows import dict_row
 from .config import settings
+import os
 
-SQLALCHEMY_DATBASE_URL = f"postgresql://{settings.DATABASE_USERNAME}:{settings.DATABASE_PASSWORD}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}"
+# SQLALCHEMY_DATBASE_URL = f"postgresql://{settings.DATABASE_USERNAME}:{settings.DATABASE_PASSWORD}@{settings.DATABASE_HOSTNAME}:{settings.DATABASE_PORT}/{settings.DATABASE_NAME}"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-engine = create_engine(SQLALCHEMY_DATBASE_URL)
+DATABASE_URL = DATABASE_URL.replace(
+    "postgres://",
+    "postgresql://"
+)
+
+engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
